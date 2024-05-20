@@ -11,6 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  ConnectivityResult cres=ConnectivityResult.none;
   @override
   void initState() {
     super.initState();
@@ -57,24 +59,32 @@ class _HomePageState extends State<HomePage> {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("No Internet")));
           }
         },
+        child: Icon(Icons.add),
       ),
       bottomSheet: StreamBuilder<ConnectivityResult>(
           stream: Connectivity().onConnectivityChanged,
           builder: (context, snapshot) {
             bool isConnection = snapshot.data != ConnectivityResult.none;
-            if (isConnection) {
-              Future.delayed(
-                Duration(seconds: 1),
-                () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text("Connection"),
-                      backgroundColor: Colors.green,
-                    ),
-                  );
-                },
-              );
 
+
+            if (isConnection) {
+              // mobile mobile
+              if(cres!=snapshot.data){
+                Future.delayed(
+                  Duration(seconds: 1),
+                      () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Connection"),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
+                  },
+                );
+              }
+
+
+              cres=snapshot.data!;
               return SizedBox();
             } else {
               return Container(

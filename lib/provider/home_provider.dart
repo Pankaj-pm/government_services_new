@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class HomeProvider extends ChangeNotifier{
 
   ConnectivityResult connectivityResult =ConnectivityResult.none;
+  bool isLoad=true;
 
   void checkingConnection(){
 
@@ -12,6 +13,10 @@ class HomeProvider extends ChangeNotifier{
       notifyListeners();
     });
 
+  }
+  void onChangeLoad(bool isLoad){
+    this.isLoad=isLoad;
+    notifyListeners();
   }
 
 
