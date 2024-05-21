@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:government_services_new/provider/home_provider.dart';
 import 'package:government_services_new/view/g_service.dart';
+import 'package:government_services_new/view/my_web.dart';
 import 'package:provider/provider.dart';
 
 class GServicesPage extends StatefulWidget {
@@ -85,6 +86,11 @@ class _GServicesPageState extends State<GServicesPage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyWebPage();
+        },));
+      },),
     );
   }
 }

@@ -5,6 +5,7 @@ class HomeProvider extends ChangeNotifier{
 
   ConnectivityResult connectivityResult =ConnectivityResult.none;
   bool isLoad=true;
+  double webProgress=0;
 
   void checkingConnection(){
 
@@ -16,6 +17,10 @@ class HomeProvider extends ChangeNotifier{
   }
   void onChangeLoad(bool isLoad){
     this.isLoad=isLoad;
+    notifyListeners();
+  }
+  void onWebProgress(double webProgress){
+    this.webProgress=webProgress;
     notifyListeners();
   }
 
